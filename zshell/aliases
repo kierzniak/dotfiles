@@ -1,0 +1,8 @@
+
+#alias directories
+hash -d zf="/Users/kierzniak/development/zend"
+hash -d wp="/Users/kierzniak/development/wordpress" 
+hash -d html-css="/Users/kierzniak/development/html-css" 
+hash -d rb="/Users/kierzniak/development/ruby" 
+
+alias flushdns='dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
