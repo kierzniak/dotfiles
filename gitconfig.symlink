@@ -1,0 +1,24 @@
+[user]
+  name = Piotr Kierzniewski
+  email = kierzniak@gmail.com
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow 
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = green
+  changed = cyan
+  untracked = red
+  removed = yellow
+[core]
+  editor = vim -f
+  excludesfile = /Users/kierzniak/.gitignore
