@@ -1,0 +1,53 @@
+# vim: ft=tmux
+if-shell 'test -z "$POWERLINE_COMMAND"' 'if-shell "which powerline-client" "set-environment -g POWERLINE_COMMAND powerline-client" "set-environment -g POWERLINE_COMMAND powerline"'
+
+set -g status on
+set -g status-utf8 on
+set -g status-interval 2
+set -g status-fg colour231
+set -g status-bg colour234
+set -g status-left-length 20
+set -g status-left '#[fg=colour16,bg=colour254,bold] #S #[fg=colour254,bg=colour234,nobold]#(eval $POWERLINE_COMMAND tmux left)'
+set -g status-right '#(eval $POWERLINE_COMMAND tmux right -R pane_id=`tmux display -p "#D"`)'
+set -g status-right-length 150
+set -g window-status-format "#[fg=colour244,bg=colour234]#I #[fg=colour240] #[default]#W "
+set -g window-status-current-format "#[fg=colour234,bg=colour31]#[fg=colour117,bg=colour31] #I  #[fg=colour231,bold]#W #[fg=colour31,bg=colour234,nobold]"
+set-window-option -g window-status-fg colour249
+set-window-option -g window-status-activity-attr none
+set-window-option -g window-status-bell-attr none
+set-window-option -g window-status-activity-fg yellow
+set-window-option -g window-status-bell-fg red
+
+# set-option -g default-command "reattach-to-user-namespace -l zsh"
+set -g mode-mouse on
+set -g mouse-resize-pane on
+set -g mouse-select-pane on
+set -g mouse-select-window on
+
+# mouse can be used to select panes
+set-option -g mouse-select-pane on
+
+# mouse can be used to select windows (by clicking in the status bar)
+set-option -g mouse-select-window on
+
+# mouse can be used to resize panes (by dragging dividers)
+set-option -g mouse-resize-pane on
+
+#default shell zsh
+set-option -g default-shell /bin/zsh
+
+# Toggle mouse on with ^B m
+bind m \
+  set -g mode-mouse on \;\
+  set -g mouse-resize-pane on \;\
+  set -g mouse-select-pane on \;\
+  set -g mouse-select-window on \;\
+  display 'Mouse: ON'
+
+# Toggle mouse off with ^B M
+bind M \
+  set -g mode-mouse off \;\
+  set -g mouse-resize-pane off \;\
+  set -g mouse-select-pane off \;\
+  set -g mouse-select-window off \;\
+  display 'Mouse: OFF'
