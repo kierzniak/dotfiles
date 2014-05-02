@@ -12,4 +12,4 @@ PROMPT='%{$fg[green]%}<<<%{${reset_color}%} %~ %{$(ruby_version)%} %{$(git_promp
 %{$fg[blue]%}>>>%{${reset_color}%} '
 
 # Of course we need a matching continuation prompt
-PROMPT2='${PR_GREEN}>>>%{${reset_color}%}'
+PROMPT2='%{$fg[blue]%}>>>%{${reset_color}%}'
