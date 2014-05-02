@@ -11,21 +11,19 @@
 # Dotfiles path
 dir="${HOME}/.dotfiles"
 
-# Set default shell as zsh
-# chsh -s /bin/zsh
-
-# Cole repository
-
-
+# Get new repository
 if [[ ! -d "$dir" ]]; then
-  echo "Clone repositury"
+  # Clone repository if not exists
+  echo "Clone repository"
   git clone https://github.com/kierzniak/dotfiles.git "$dir"
 else
+  # Pull repository if exists
   echo "Repository already exists in ${dir}"
   echo "Pulling changes from repository"
   git --work-tree="${dir}" --git-dir="${dir}"/.git pull origin master
 fi
 
+# Symlink files if .dotfiles directory exists otherwise exit cript
 if [[ -d "$dir" ]]; then
   echo "Symlinking dotfiles from ${dir}"
 else
@@ -33,6 +31,7 @@ else
   exit 1
 fi
 
+# Function to symlink
 link() {
   from="$1"
   to="$2"
@@ -41,6 +40,7 @@ link() {
   ln -s "$from" "$to"
 }
 
+# Iterate over *.symlink files in .dotfiles directory
 for location in $(find  ${dir} -name '*.symlink'); do
   # Remove .symlink extenstion from file
   file="${location%.symlink}"
@@ -48,5 +48,6 @@ for location in $(find  ${dir} -name '*.symlink'); do
   # Remove path from file
   file="${file##*/}"
 
+  # Symlink with link function
   link "$location" "$HOME/.$file"
 done
