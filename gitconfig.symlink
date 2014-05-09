@@ -21,4 +21,4 @@
   removed = yellow
 [core]
   editor = vim -f
-  excludesfile = /Users/kierzniak/.gitignore
+	excludesfile = ~/.gitignore
