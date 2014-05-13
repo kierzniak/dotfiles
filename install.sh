@@ -23,7 +23,7 @@ else
   git --work-tree="${dir}" --git-dir="${dir}"/.git pull origin master
 fi
 
-# Symlink files if .dotfiles directory exists otherwise exit cript
+# Symlink files if .dotfiles directory exists otherwise exit script
 if [[ -d "$dir" ]]; then
   echo "Symlinking dotfiles from ${dir}"
 else
