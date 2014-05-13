@@ -12,7 +12,7 @@
 dir="${HOME}/.dotfiles"
 
 # Get new repository
-if [[ ! -d "$dir" ]]; then
+if [ ! -d "$dir" ]; then
   # Clone repository if not exists
   echo "Clone repository"
   git clone https://github.com/kierzniak/dotfiles.git "$dir"
@@ -24,7 +24,7 @@ else
 fi
 
 # Symlink files if .dotfiles directory exists otherwise exit script
-if [[ -d "$dir" ]]; then
+if [ -d "$dir" ]; then
   echo "Symlinking dotfiles from ${dir}"
 else
   echo "$dir does not exist"
