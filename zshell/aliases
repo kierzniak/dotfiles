@@ -1,8 +1,27 @@
 
 #alias directories
-hash -d zf="/Users/kierzniak/development/zend"
-hash -d wp="/Users/kierzniak/development/wordpress" 
-hash -d html-css="/Users/kierzniak/development/html-css" 
-hash -d rb="/Users/kierzniak/development/ruby" 
 
-alias flushdns='dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
+OS=`uname`
+
+if [[ "$OS" == 'Linux' ]]; then
+
+  hash -d html-css="/var/www/html-css" 
+  hash -d js="/var/www/javascript" 
+  hash -d wp="/var/www/wordpress" 
+  hash -d mg="/var/www/magento" 
+  hash -d php="/var/www/php"
+  hash -d zf="/var/www/zend"
+  hash -d rb="/var/www/ruby"
+
+elif [[ "$OS" == 'Darwin' ]]; then
+
+  hash -d html-css="${HOME}/development/html-css" 
+  hash -d js="${HOME}/development/javascript" 
+  hash -d wp="${HOME}/development/wordpress" 
+  hash -d mg="${HOME}/development/magento" 
+  hash -d php="${HOME}/development/php"
+  hash -d zf="${HOME}/development/zend"
+  hash -d rb="${HOME}/development/ruby"
+
+  alias flushdns='dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
+fi
