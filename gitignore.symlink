@@ -20,6 +20,10 @@
 *.tar
 *.zip
 
+# Packages directories #
+############
+node_modules
+
 # Logs #
 ######################
 *.log
