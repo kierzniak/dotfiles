@@ -5,6 +5,9 @@ export PATH=$PATH:/bin
 export PATH=$PATH:/usr/sbin
 export PATH=$PATH:/sbin
 export PATH=$PATH:/usr/X11/bin
-export PATH=$PATH:/usr/local/share/npm/bin
 export PATH=$PATH:/usr/local/share/python
+export PATH=$PATH:~/.npm/bin
 export PATH=$PATH:~/.composer/vendor/bin
+
+# Max open files on OS X
+ulimit -n 4096

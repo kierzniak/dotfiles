@@ -51,3 +51,6 @@ for location in $(find  ${dir} -name '*.symlink'); do
   # Symlink with link function
   link "$location" "$HOME/.$file"
 done
+
+# Change terminal settings
+open "$dir/kierzniak.terminal"
