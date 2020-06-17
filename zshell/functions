@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# The command is responsible for adding the local repository configuration and also to require the dependency.
+# To use the function you need to specify two parameters, the relative path to the package and the package name:
+#
+# composer-link ../my-package fetzi/my-package
+#
+# An optional third parameter defines the name of the repository entry in your composer.json file. The value defaults to local.
+composer-link() {
+  repositoryName=${3:-local}
+
+  composer config repositories.$repositoryName '{"type": "path", "url": "'$1'", "options": {"symlink": true}}' --file composer.json
+  composer require $2 @dev
+}

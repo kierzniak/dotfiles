@@ -1,0 +1,16 @@
+Host *
+  # Specifies whether keys should be automatically added to a running ssh-agent(1).
+  AddKeysToAgent yes
+
+  # SSH agent forwarding can be used to make deploying to a server simple. It
+  # allows you to use your local SSH keys instead of leaving keys
+  # (without passphrases!) sitting on your server.
+  ForwardAgent yes
+
+  # Overwrite default SendEnv variable which is sending LANG and LC_* variables
+  # to SSH session which may cause little issues on the remote server.
+  SendEnv
+
+  # UseKeychain option was introduced in macOS Sierra allowing users to specify
+  # whether they would like for the passphrase to be stored in the keychain.
+  UseKeychain yes

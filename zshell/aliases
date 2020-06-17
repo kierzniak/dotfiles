@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Alias directories
+
+OS=`uname`
+
+if [[ "$OS" == 'Linux' ]]; then
+
+  hash -d html-css="/var/www/html-css" 
+  hash -d node="/var/www/node" 
+  hash -d wp="/var/www/wordpress" 
+  hash -d php="/var/www/php"
+  hash -d sf="/var/www/symfony"
+
+elif [[ "$OS" == 'Darwin' ]]; then
+
+  hash -d html-css="${HOME}/development/html-css"
+  hash -d node="${HOME}/development/node"
+  hash -d wp="${HOME}/development/wordpress"
+  hash -d php="${HOME}/development/php"
+  hash -d sf="${HOME}/development/symfony"
+
+fi
