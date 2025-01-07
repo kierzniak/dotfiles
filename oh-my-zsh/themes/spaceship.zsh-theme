@@ -1,1 +1,0 @@
-/Users/kierzniak/.dotfiles/oh-my-zsh/themes/spaceship-prompt/spaceship.zsh-theme

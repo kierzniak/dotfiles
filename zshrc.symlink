@@ -4,4 +4,3 @@ source ~/.dotfiles/zshell/aliases
 source ~/.dotfiles/zshell/functions
 
 source ~/.dotfiles/oh-my-zsh/config
-source ~/.dotfiles/oh-my-zsh/themes/spaceship-prompt-modifications/config

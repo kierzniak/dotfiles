@@ -1,1 +1,7 @@
 #!/bin/bash
+
+# Starship
+eval "$(starship init zsh)"
+
+# Max open files on OS X
+ulimit -n 4096

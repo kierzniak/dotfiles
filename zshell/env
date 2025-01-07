@@ -9,20 +9,12 @@ export PATH=$PATH:/bin
 export PATH=$PATH:/usr/sbin
 export PATH=$PATH:/sbin
 
+
 # Export NVM dir variable and import nvm configuration
 export NVM_DIR="$HOME/.nvm"
 [[ -s $NVM_DIR/nvm.sh ]] && . $NVM_DIR/nvm.sh
 
-# Add RVM to PATH for scripting and load RVM into a shell session as a function
-export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-# Export JAVA_HOME for java development
-[[ -s "/usr/libexec/java_home" ]] && export JAVA_HOME=$(/usr/libexec/java_home)
-
-# Export ANDROID_SDK_ROOT for android development
-[[ -s "/usr/local/share/android-sdk" ]] && export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
-[[ -s "/usr/local/share/android-sdk" ]] && export ANDROID_HOME=$ANDROID_SDK_ROOT
-
-# Max open files on OS X
-ulimit -n 4096
+# Ghostty shell integration for Bash. This should be at the top of your bashrc!
+if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
+    builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
+fi

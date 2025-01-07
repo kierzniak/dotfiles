@@ -1,4 +1,7 @@
 Host *
+  # Fallback to xterm-256color because of ghostty
+  SetEnv TERM=xterm-256color
+
   # Specifies whether keys should be automatically added to a running ssh-agent(1).
   AddKeysToAgent yes
 
@@ -9,8 +12,21 @@ Host *
 
   # Overwrite default SendEnv variable which is sending LANG and LC_* variables
   # to SSH session which may cause little issues on the remote server.
-  SendEnv
+  SendEnv FOO
 
   # UseKeychain option was introduced in macOS Sierra allowing users to specify
   # whether they would like for the passphrase to be stored in the keychain.
   UseKeychain yes
+
+  # Sets a timeout interval in seconds after which if no data has been received
+  # from the server, ssh will send a message through the encrypted channel to
+  # request a response from the server. The default is 0, indicating that these
+  # messages will not be sent to the server. This option applies to protocol
+  # version 2 only.
+  ServerAliveInterval 60
+
+  # The default value is 3. If, for example, ServerAliveInterval is set to 15
+  # and ServerAliveCountMax is left at the default, if the server becomes
+  # unresponsive, ssh will disconnect after approximately 45 seconds. This
+  # option applies to protocol version 2 only.
+  ServerAliveCountMax 9999

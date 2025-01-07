@@ -10,7 +10,7 @@
 
 # Dotfiles path
 dir="${HOME}/.dotfiles"
-spaceship_prompt_dir="${dir}/oh-my-zsh/themes/spaceship-prompt"
+
 
 # Get new repository
 if [ ! -d "$dir" ]; then
@@ -23,24 +23,6 @@ else
   echo "Pulling changes from repository"
   git --work-tree="${dir}" --git-dir="${dir}"/.git pull origin master
 fi
-
-# Instal spaceship-prompt
-
-# Get spaceship-prompt repository
-if [ ! -d "$spaceship_prompt_dir" ]; then
-  # Clone repository if not exists
-  echo "Clone spaceship-prompt repository"
-  git clone https://github.com/denysdovhan/spaceship-prompt.git "$spaceship_prompt_dir"
-else
-  # Pull repository if exists
-  echo "Repository already exists in ${spaceship_prompt_dir}"
-  echo "Pulling changes from repository"
-  git --work-tree="${spaceship_prompt_dir}" --git-dir="${spaceship_prompt_dir}"/.git pull origin master
-fi
-
-# Symlink spaceship-prompt theme
-rm -f "${dir}/oh-my-zsh/themes/spaceship.zsh-theme"
-ln -s "$spaceship_prompt_dir/spaceship.zsh-theme" "${dir}/oh-my-zsh/themes/spaceship.zsh-theme"
 
 # Symlink files if .dotfiles directory exists otherwise exit script
 if [ -d "$dir" ]; then
@@ -57,6 +39,14 @@ link() {
   echo "Linking '$from' to '$to'"
   rm -f "$to"
   ln -s "$from" "$to"
+}
+
+create_dir() {
+  dir_to_create="$1"
+
+  if [[ ! -e "$dir_to_create" ]]; then
+    mkdir -p "$dir_to_create"
+fi
 }
 
 # Iterate over *.symlink files in .dotfiles directory
@@ -78,3 +68,12 @@ if [[ ! -e "$HOME/.ssh/config" ]]; then
 fi
 
 link "${dir}/ssh/config" "$HOME/.ssh/config"
+
+create_dir "$HOME/.config"
+create_dir "$HOME/.config/ghostty"
+
+# Symlink ghostty config
+link "${dir}/config/ghostty" "$HOME/.config/ghostty/config"
+
+# Symlink starship config 
+link "${dir}/config/starship.yml" "$HOME/.config/starship.yml"

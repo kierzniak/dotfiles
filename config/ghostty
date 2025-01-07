@@ -1,0 +1,42 @@
+# The syntax is "key = value". The whitespace around the
+# equals doesn't matter.
+palette = 0=#5c5855
+palette = 1=#FD6F6B
+palette = 2=#67F86F
+palette = 3=#FFFA72
+palette = 4=#6A75FB
+palette = 5=#FE7BFD
+palette = 6=#68FDFE
+palette = 7=#f7f7f7
+palette = 8=#736e6a
+palette = 9=#ff8b86
+palette = 10=#81ff8b
+palette = 11=#ffff8f
+palette = 12=#8592ff
+palette = 13=#ff9aff
+palette = 14=#82ffff
+palette = 15=#ffffff
+
+background = #000000
+foreground = #f8f6f6
+cursor-color = #f8f6f6
+selection-background = #8c8582
+selection-foreground = #f8f6f6
+
+# Empty values reset the configuration to the default value
+font-family="JetBrains Mono"
+font-size=12
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+
+# Colors
+window-width = 180
+window-height = 50
+window-padding-x = 4
+window-padding-y = 2
+
+# Theme
+theme=catppuccin-latte

@@ -1,6 +1,7 @@
 [user]
   name = Piotr Kierzniewski
   email = p.kierzniewski@viewone.pl
+	signingkey = 413E0B82FBE8BDD4
 [color]
   branch = auto
   diff = auto
@@ -24,3 +25,5 @@
   excludesfile = ~/.gitignore
 [push]
   default = simple
+[gpg]
+	program = gpg
