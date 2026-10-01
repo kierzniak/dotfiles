@@ -89,59 +89,6 @@ brew "wrk"
 brew "xpdf"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
-# Password manager that keeps all passwords secure behind one password
-cask "1password"
-# Command-line interface for 1Password
-cask "1password-cli"
-# App to build and share containerised applications and microservices
-cask "docker-desktop"
-# Web browser
-cask "firefox"
-cask "font-fira-code"
-# Web browser
-cask "google-chrome"
-# Open-source video transcoder
-cask "handbrake-app"
-# Meet, chat, call, and collaborate in just one place
-cask "microsoft-teams"
-# Reverse proxy, secure introspectable tunnels to localhost
-cask "ngrok"
-# App to write, plan, collaborate, and get organised
-cask "notion"
-# Collaboration platform for API development
-cask "postman"
-# Quick Look plug-in that renders source code with syntax highlighting
-cask "qlcolorcode"
-# Quick Look generator for Markdown files
-cask "qlmarkdown"
-# Quick Look plugin for plaintext files without an extension
-cask "qlstephen"
-# Quick Look plugin for JSON files
-cask "quicklook-json"
-# Thumbnails, static previews, cover art and metadata for video files
-cask "quicklook-video"
-# Control your tools with a few keystrokes
-cask "raycast"
-# Team communication and collaboration software
-cask "slack"
-# Music streaming service
-cask "spotify"
-# Video game digital distribution service
-cask "steam"
-# Native GUI tool for relational databases
-cask "tableplus"
-# Unpacks archive files
-cask "the-unarchiver"
-# File transfer application
-cask "transmit"
-# Open-source code editor
-cask "visual-studio-code"
-# Multimedia player
-cask "vlc"
-# Native desktop client for WhatsApp
-cask "whatsapp"
-# Network protocol analyzer
-cask "wireshark-app"
 cargo "repo2file-cli"
 npm "@pulumi/pulumi"
 npm "@wordpress/env"
