@@ -1,0 +1,12 @@
+# Copy to ~/.ssh/config.local and add private hosts here. Never commit the real one.
+
+# Host legacy-server
+#   HostName 10.0.0.1
+#   HostKeyAlgorithms +ssh-rsa
+#   PubkeyAcceptedKeyTypes +ssh-rsa
+
+# Host my-mac
+#   HostName ssh.example.com
+#   User me
+#   ProxyCommand cloudflared access ssh --hostname %h
+#   IdentityFile ~/.ssh/id_rsa

@@ -1,0 +1,5 @@
+# Copy to ~/.zshrc.local for machine-specific stuff (never committed).
+# Example: MAMP PHP
+# if [ -d /Applications/MAMP/bin/php/php7.4.33 ]; then
+#   export PATH="/Applications/MAMP/bin/php/php7.4.33/bin:$PATH"
+# fi

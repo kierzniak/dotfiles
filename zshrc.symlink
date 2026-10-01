@@ -1,6 +1,9 @@
+# Managed by ~/.dotfiles — machine-specific overrides go in ~/.zshrc.local
 source ~/.dotfiles/zshell/env
 source ~/.dotfiles/zshell/config
 source ~/.dotfiles/zshell/aliases
 source ~/.dotfiles/zshell/functions
 
 source ~/.dotfiles/oh-my-zsh/config
+
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # The command is responsible for adding the local repository configuration and also to require the dependency.
 # To use the function you need to specify two parameters, the relative path to the package and the package name:

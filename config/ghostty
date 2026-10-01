@@ -32,11 +32,18 @@ cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor
 
-# Colors
+# Window
 window-width = 180
 window-height = 50
 window-padding-x = 4
 window-padding-y = 2
 
 # Theme
-theme=catppuccin-latte
+# Built-in theme (see `ghostty +list-themes`). The explicit palette/background/
+# foreground values above override it, so currently the custom dark palette wins.
+# To use Catppuccin instead, delete the palette/background/foreground lines.
+theme = "Catppuccin Latte"
+
+# Icon
+macos-icon=xray
+keybind = shift+enter=text:\n

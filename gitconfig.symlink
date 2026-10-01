@@ -1,14 +1,13 @@
-[user]
-  name = Piotr Kierzniewski
-  email = p.kierzniewski@viewone.pl
-	signingkey = 413E0B82FBE8BDD4
+# Identity (name, email, signingkey) lives in ~/.gitconfig.local — created by install.sh.
+[include]
+  path = ~/.gitconfig.local
 [color]
   branch = auto
   diff = auto
   status = auto
 [color "branch"]
   current = yellow reverse
-  local = yellow 
+  local = yellow
   remote = green
 [color "diff"]
   meta = yellow bold
@@ -25,5 +24,7 @@
   excludesfile = ~/.gitignore
 [push]
   default = simple
+[init]
+  defaultBranch = main
 [gpg]
-	program = gpg
+  program = gpg

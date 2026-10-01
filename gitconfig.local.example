@@ -1,0 +1,7 @@
+# Copy to ~/.gitconfig.local (install.sh does this interactively). Never commit the real one.
+[user]
+  name = Your Name
+  email = you@example.com
+  # signingkey = ABCDEF1234567890
+# [commit]
+#   gpgsign = true

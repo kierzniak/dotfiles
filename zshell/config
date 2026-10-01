@@ -1,7 +1,10 @@
-#!/bin/bash
+#!/bin/zsh
 
-# Starship
-eval "$(starship init zsh)"
+# Starship prompt (config: ~/.config/starship.toml)
+command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
 
 # Max open files on OS X
 ulimit -n 4096
+
+# Bindings
+bindkey '^U' backward-kill-line
