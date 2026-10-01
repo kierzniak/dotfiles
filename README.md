@@ -4,12 +4,27 @@ macOS shell setup: zsh + oh-my-zsh (plugins only) + Starship prompt, Ghostty, gi
 
 ## New machine
 
+Interactive (prompts for git name / email / GPG key):
+
 ```sh
 curl -fsSL https://raw.githubusercontent.com/kierzniak/dotfiles/master/install.sh | bash
 ```
 
-Prompts for git name / email / GPG key and writes them to `~/.gitconfig.local`.
-Non-interactive: `GIT_NAME=... GIT_EMAIL=... GIT_SIGNINGKEY=... ./install.sh`.
+Non-interactive:
+
+```sh
+GIT_NAME="Your Name" GIT_EMAIL="you@example.com" GIT_SIGNINGKEY="" \
+  bash -c "$(curl -fsSL https://raw.githubusercontent.com/kierzniak/dotfiles/master/install.sh)"
+```
+
+Notes:
+
+- Fresh Mac without Xcode CLT: the script opens the install dialog and exits. Re-run once it finishes.
+- Installs Homebrew, `Brewfile`, oh-my-zsh, nvm, rustup, then symlinks everything. Safe to re-run.
+- `SKIP_BREW=1` skips Homebrew packages.
+- Clones over HTTPS so no SSH key is needed. Switch later:
+  `git -C ~/.dotfiles remote set-url origin git@github.com:kierzniak/dotfiles.git`
+- Afterwards: `exec zsh`, then add private hosts to `~/.ssh/config.local`.
 
 ## Layout
 
