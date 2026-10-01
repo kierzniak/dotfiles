@@ -38,11 +38,8 @@ window-height = 50
 window-padding-x = 4
 window-padding-y = 2
 
-# Theme
-# Built-in theme (see `ghostty +list-themes`). The explicit palette/background/
-# foreground values above override it, so currently the custom dark palette wins.
-# To use Catppuccin instead, delete the palette/background/foreground lines.
-theme = "Catppuccin Latte"
+# Theme: custom dark palette defined above (no built-in theme).
+# To try a built-in one: `ghostty +list-themes`, then e.g. theme = "Catppuccin Mocha"
 
 # Icon
 macos-icon=xray

@@ -93,61 +93,23 @@ brew "yt-dlp"
 cask "1password"
 # Command-line interface for 1Password
 cask "1password-cli"
-# Menu bar app for playing Ace Stream video streams in an external media player
-cask "ace-link"
-# Create and modify subtitles
-cask "aegisub"
-# Application launcher and productivity software
-cask "alfred"
-cask "android-sdk"
-# Tools for building Android applications
-cask "android-studio"
-# 3D creation suite
-cask "blender"
-# Free and open-source web browser
-cask "chromium"
-# Server and cloud storage browser
-cask "cyberduck"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
 # Web browser
 cask "firefox"
-# Website and application blocker
-cask "focus"
 cask "font-fira-code"
-cask "forticlient"
 # Web browser
 cask "google-chrome"
-cask "google-drive-file-stream"
-cask "grammarly"
 # Open-source video transcoder
 cask "handbrake-app"
-# Terminal built on web technologies
-cask "hyper"
-# Password manager compatible with KeePass
-cask "keeweb"
 # Meet, chat, call, and collaborate in just one place
 cask "microsoft-teams"
-# Visual tool to design, develop and administer MySQL servers
-cask "mysqlworkbench"
 # Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
 # App to write, plan, collaborate, and get organised
 cask "notion"
-# Client program for the OpenVPN Access Server
-cask "openvpn-connect"
-# Web browser
-cask "opera"
-# PHP IDE by JetBrains
-cask "phpstorm"
-# Translation editor
-cask "poedit"
-# Email client focusing on privacy protection
-cask "postbox"
 # Collaboration platform for API development
 cask "postman"
-# Quick Look plugin for mobile apps and provisioning profiles
-cask "provisionql"
 # Quick Look plug-in that renders source code with syntax highlighting
 cask "qlcolorcode"
 # Quick Look generator for Markdown files
@@ -158,36 +120,20 @@ cask "qlstephen"
 cask "quicklook-json"
 # Thumbnails, static previews, cover art and metadata for video files
 cask "quicklook-video"
-# Quick Look generator for Adobe Swatch Exchange files
-cask "quicklookase"
 # Control your tools with a few keystrokes
 cask "raycast"
-# Remote desktop application focusing on security
-cask "realvnc-connect-viewer"
-# Digital design and prototyping platform
-cask "sketch"
-# Video chat, voice call and instant messaging application
-cask "skype"
 # Team communication and collaboration software
 cask "slack"
 # Music streaming service
 cask "spotify"
 # Video game digital distribution service
 cask "steam"
-# Application for inspecting installer packages
-cask "suspicious-package"
 # Native GUI tool for relational databases
 cask "tableplus"
-# Remote access and connectivity software focused on security
-cask "teamviewer"
 # Unpacks archive files
 cask "the-unarchiver"
 # File transfer application
 cask "transmit"
-# Development environment
-cask "vagrant"
-# Virtualiser for x86 hardware
-cask "virtualbox"
 # Open-source code editor
 cask "visual-studio-code"
 # Multimedia player
