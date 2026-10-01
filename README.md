@@ -7,8 +7,10 @@ macOS shell setup: zsh + oh-my-zsh (plugins only) + Starship prompt, Ghostty, gi
 Interactive (prompts for git name / email / GPG key):
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/kierzniak/dotfiles/master/install.sh | bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/kierzniak/dotfiles/master/install.sh)"
 ```
+
+(`curl … | bash` also works; the script re-executes itself with stdin on the terminal.)
 
 Non-interactive:
 

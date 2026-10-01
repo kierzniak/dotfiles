@@ -2,7 +2,7 @@
 #
 # Bootstrap a macOS machine with these dotfiles. Idempotent — safe to re-run.
 #
-#   curl -fsSL https://raw.githubusercontent.com/kierzniak/dotfiles/master/install.sh | bash
+#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/kierzniak/dotfiles/master/install.sh)"
 #
 # Non-interactive: GIT_NAME="..." GIT_EMAIL="..." GIT_SIGNINGKEY="..." ./install.sh
 # Skip Homebrew packages: SKIP_BREW=1 ./install.sh
@@ -11,6 +11,19 @@ set -euo pipefail
 
 DOTFILES="${DOTFILES:-$HOME/.dotfiles}"
 REPO="https://github.com/kierzniak/dotfiles.git"
+RAW="https://raw.githubusercontent.com/kierzniak/dotfiles/master/install.sh"
+
+# When run as `curl | bash`, stdin IS the script: any child that reads stdin
+# (brew, installers) eats the rest of it, and prompts can't work. Re-exec with
+# a fresh copy and stdin attached to the terminal.
+if [ ! -t 0 ] && [ -z "${DOTFILES_REEXEC:-}" ] && ( : </dev/tty ) 2>/dev/null; then
+  tmp="$(mktemp)"
+  curl -fsSL "$RAW" -o "$tmp"
+  DOTFILES_REEXEC=1 exec bash "$tmp" "$@" </dev/tty
+fi
+
+# True only when a real terminal can be opened (not just when /dev/tty exists)
+has_tty() { ( : </dev/tty ) 2>/dev/null; }
 
 log()  { printf '\033[1;34m==>\033[0m %s\n' "$*"; }
 warn() { printf '\033[1;33mwarn:\033[0m %s\n' "$*"; }
@@ -32,8 +45,8 @@ link() {
 ask() {
   local var="$1" prompt="$2" default="${3:-}" value
   if [ -n "${!var:-}" ]; then return; fi
-  if [ -t 0 ]; then
-    read -rp "$prompt${default:+ [$default]}: " value
+  if has_tty; then
+    read -rp "$prompt${default:+ [$default]}: " value </dev/tty
     printf -v "$var" '%s' "${value:-$default}"
   else
     printf -v "$var" '%s' "$default"
@@ -47,6 +60,26 @@ if [ ! -d "$DOTFILES/.git" ]; then
 else
   log "Updating $DOTFILES"
   git -C "$DOTFILES" pull --ff-only origin master || warn "pull failed, continuing with local copy"
+fi
+
+# ---------------------------------------------------------------- git identity (ask first, before long installs)
+if [ ! -f "$HOME/.gitconfig.local" ]; then
+  log "Git identity (stored in ~/.gitconfig.local, never committed)"
+  ask GIT_NAME       "  Git user.name"
+  ask GIT_EMAIL      "  Git user.email"
+  ask GIT_SIGNINGKEY "  GPG signing key (blank to skip)"
+  if [ -z "${GIT_NAME:-}" ] || [ -z "${GIT_EMAIL:-}" ]; then
+    warn "No git identity given; create ~/.gitconfig.local from gitconfig.local.example"
+  else
+    {
+      echo "[user]"
+      echo "  name = $GIT_NAME"
+      echo "  email = $GIT_EMAIL"
+      [ -n "${GIT_SIGNINGKEY:-}" ] && echo "  signingkey = $GIT_SIGNINGKEY"
+      if [ -n "${GIT_SIGNINGKEY:-}" ]; then echo "[commit]"; echo "  gpgsign = true"; fi
+    } > "$HOME/.gitconfig.local"
+    log "Wrote ~/.gitconfig.local"
+  fi
 fi
 
 # ---------------------------------------------------------------- macOS deps
@@ -76,18 +109,22 @@ fi
 # ---------------------------------------------------------------- shell tools
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   log "Installing oh-my-zsh"
-  RUNZSH=no KEEP_ZSHRC=yes CHSH=no \
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  ZSH="$HOME/.oh-my-zsh" RUNZSH=no KEEP_ZSHRC=yes CHSH=no \
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" </dev/null \
+    || warn "oh-my-zsh installer failed"
 fi
+[ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ] || warn "oh-my-zsh missing at ~/.oh-my-zsh — shell will skip it"
 
 if [ ! -d "$HOME/.nvm" ]; then
   log "Installing nvm"
-  PROFILE=/dev/null bash -c "$(curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh)"
+  NVM_DIR="$HOME/.nvm" PROFILE=/dev/null bash -c "$(curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh)" </dev/null \
+    || warn "nvm installer failed"
 fi
 
 if ! have cargo && [ ! -d "$HOME/.cargo" ]; then
   log "Installing Rust (rustup)"
-  curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | sh -s -- -y --no-modify-path
+  curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | sh -s -- -y --no-modify-path \
+    || warn "rustup installer failed"
 fi
 
 # ---------------------------------------------------------------- symlinks
@@ -113,25 +150,6 @@ chmod 600 "$HOME/.ssh/config.local"
 if [ ! -f "$HOME/.zshrc.local" ]; then
   cp "$DOTFILES/zshrc.local.example" "$HOME/.zshrc.local"
   log "Created ~/.zshrc.local — machine-specific shell config goes there"
-fi
-
-if [ ! -f "$HOME/.gitconfig.local" ]; then
-  log "Git identity (stored in ~/.gitconfig.local, never committed)"
-  ask GIT_NAME       "  Git user.name"
-  ask GIT_EMAIL      "  Git user.email"
-  ask GIT_SIGNINGKEY "  GPG signing key (blank to skip)"
-  if [ -z "${GIT_NAME:-}" ] || [ -z "${GIT_EMAIL:-}" ]; then
-    warn "No git identity given; create ~/.gitconfig.local from gitconfig.local.example"
-  else
-    {
-      echo "[user]"
-      echo "  name = $GIT_NAME"
-      echo "  email = $GIT_EMAIL"
-      [ -n "${GIT_SIGNINGKEY:-}" ] && echo "  signingkey = $GIT_SIGNINGKEY"
-      if [ -n "${GIT_SIGNINGKEY:-}" ]; then echo "[commit]"; echo "  gpgsign = true"; fi
-    } > "$HOME/.gitconfig.local"
-    log "Wrote ~/.gitconfig.local"
-  fi
 fi
 
 # ---------------------------------------------------------------- done
