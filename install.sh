@@ -106,6 +106,19 @@ if [ "$(uname)" = "Darwin" ]; then
   fi
 fi
 
+# ---------------------------------------------------------------- symlinks
+log "Symlinking dotfiles"
+for location in "$DOTFILES"/*.symlink; do
+  file="${location%.symlink}"
+  file="${file##*/}"
+  link "$location" "$HOME/.$file"
+done
+
+mkdir -p "$HOME/.ssh" && chmod 700 "$HOME/.ssh"
+link "$DOTFILES/ssh/config"            "$HOME/.ssh/config"
+link "$DOTFILES/config/ghostty"        "$HOME/.config/ghostty/config"
+link "$DOTFILES/config/starship.toml"  "$HOME/.config/starship.toml"
+
 # ---------------------------------------------------------------- shell tools
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   log "Installing oh-my-zsh"
@@ -126,19 +139,6 @@ if ! have cargo && [ ! -d "$HOME/.cargo" ]; then
   curl --proto '=https' --tlsv1.2 -fsSL https://sh.rustup.rs | sh -s -- -y --no-modify-path \
     || warn "rustup installer failed"
 fi
-
-# ---------------------------------------------------------------- symlinks
-log "Symlinking dotfiles"
-for location in "$DOTFILES"/*.symlink; do
-  file="${location%.symlink}"
-  file="${file##*/}"
-  link "$location" "$HOME/.$file"
-done
-
-mkdir -p "$HOME/.ssh" && chmod 700 "$HOME/.ssh"
-link "$DOTFILES/ssh/config"            "$HOME/.ssh/config"
-link "$DOTFILES/config/ghostty"        "$HOME/.config/ghostty/config"
-link "$DOTFILES/config/starship.toml"  "$HOME/.config/starship.toml"
 
 # ---------------------------------------------------------------- local (uncommitted) files
 if [ ! -f "$HOME/.ssh/config.local" ]; then
